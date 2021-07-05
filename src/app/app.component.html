@@ -1,0 +1,65 @@
+<div class="main" #main>
+  <div class="header">
+    <div class="logo" #logo>
+      <h2>Software developer survey</h2>
+    </div>
+    <div class="search" #search>
+      <button class="search-icon">
+        <svg class="icon icon-search">
+          <use href="./assets/icons.svg#icon-magnifying-glass"></use>
+        </svg>
+      </button>
+      <button class="call">Get In Touch</button>
+    </div>
+  </div>
+
+  <div class="questionnaire" style="margin-top: -5%;">
+    <div class="progress__bar">
+      <div #slider class="progress__bar--slider"></div>
+    </div>
+    <div class="progress__actions" #progress>
+      <div class="p-actions-left">
+        <span>Step {{ currentQuestionIndex + 1 }}</span>
+        <span>Out Of</span>
+        <span>{{ questions.length }}</span>
+      </div>
+      <div class="p-actions-right">
+        <span>{{ progressValue }}%</span>
+      </div>
+    </div>
+    <div class="question" #questionContainer>
+      <h2 class="question__heading">Question {{ currentQuestionIndex + 1 }}</h2>
+      <div class="question__q">{{ question?.questionText }}</div>
+      <div class="question__answers" #answer>
+        <div class="answer" *ngFor="let answer of question.options; let i = index" #answerr
+          (click)="onSelect(answerr,i,currentQuestionIndex)">
+          <p>{{ answer?.text }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="actions" #actions>
+      <button class="previous" *ngIf="!(questions.length===currentQuestionIndex + 1)" (click)="prev()">
+        <svg class="icon icon-back">
+          <use href="./assets/icons.svg#icon-chevron-left"></use>
+        </svg>
+      </button>
+      <button class="next" *ngIf="!(questions.length===currentQuestionIndex + 1)"
+        (click)="goToNextQuestion()">Next</button>
+
+      <!-- (click)="submit()" -->
+    </div>
+    <button style=" margin-left: 15px;margin-top:00%;margin-bottom:3%;
+    background: var(--color-light-blue);
+    color: #fff;align-self: flex-end;
+    padding: 15px 15px;
+    outline: none;width:150px;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;" (click)="submit()" *ngIf="questions.length===currentQuestionIndex + 1">Submit</button>
+
+    <div *ngIf="average" style="margin-top: -8%;">
+      <p class="lead primary">Your points <button class="btn btn-success">{{average}}</button></p>
+    </div>
+
+  </div>
+</div>
