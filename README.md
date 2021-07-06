@@ -1,3 +1,9 @@
+# npm install
+do run the above command in order to setup all the dependencies and run
+
+# ng serve
+run above command to run the project and access http://localhost:4200 in browser
+
 # OnboardingApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
